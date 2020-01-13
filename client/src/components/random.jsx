@@ -10,15 +10,15 @@ class Random extends React.Component {
     }
 
     getIngAngMes(array) {
-        let ingObj = {};
+        let ingArr = [];
         for (let i = 0; i < array.length; i++) {
-            ingObj[array[i].name] = array[i].amount + ' ' + array[i].unit;
+            ingArr.push(array[i].name + ': ' + array[i].amount + ' ' + array[i].unit);
         }
-        return ingObj;
+        return ingArr;
     }
 
     componentDidMount() {
-        fetch(`https://api.spoonacular.com/recipes/random?number=2&apiKey=${key}`)
+        fetch(`https://api.spoonacular.com/recipes/random?number=10&apiKey=${key}`)
             .then(res => res.json())
             .then((data) => {
                 let randomRecipesArr = [];
@@ -37,11 +37,31 @@ class Random extends React.Component {
             })
     }
 
-    render(){
+    render() {
         return(
           <div>
-            {console.log(this.state.randomRecipes)}
-            Test
+            <div className='header'>
+              <header>
+                <h1>Random Recipes</h1>
+              </header>
+            </div>
+            <div>
+              {this.state.randomRecipes.map(el => {
+                return (
+                  <div className='card'>
+                    <br></br>
+                    <h3 className='recipeName'>{el.name}</h3>
+                    <p>{el.ingredients.map(ing => {
+                      return (
+                        <li>{ing}</li>
+                      )
+                    })}</p>
+                    <p>{el.instructions}</p>
+                  </div>
+                )
+              })}
+              {console.log(this.state.randomRecipes)}
+            </div>
           </div>
         )
     }

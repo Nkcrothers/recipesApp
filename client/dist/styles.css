@@ -1,0 +1,21 @@
+.body {
+    background-color: #12343b;
+    padding: 10px;
+}
+
+.header {
+    padding: 30px;
+    text-align: center;
+    color: #c89666;
+    background: #2d545e;
+  }
+
+.card {
+    background-color: #e1b382;
+    padding: 2px 16px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.recipeName {
+    text-align: center;
+}
