@@ -7,6 +7,7 @@ class Random extends React.Component {
       this.state = {
         randomRecipes: []
       }
+      this.clickHandler = this.clickHandler.bind(this);
     }
 
     getIngAngMes(array) {
@@ -28,13 +29,19 @@ class Random extends React.Component {
                   let recipeName = recipes[i].title;
                   let ingredientsAndMeasurements = this.getIngAngMes(recipes[i].extendedIngredients);
                   let instructions = recipes[i].instructions;
+                  let images = recipes[i].image;
                   randomRecipesObj['name'] = recipeName;
                   randomRecipesObj['ingredients'] = ingredientsAndMeasurements;
                   randomRecipesObj['instructions'] = instructions;
+                  randomRecipesObj['image'] = images;
                   randomRecipesArr.push(randomRecipesObj);
                 }
                 this.setState({randomRecipes: randomRecipesArr})
             })
+    }
+
+    clickHandler (e) {
+      this.componentDidMount();
     }
 
     render() {
@@ -45,17 +52,22 @@ class Random extends React.Component {
                 <h1>Random Recipes</h1>
               </header>
             </div>
+            <div className='button'>
+              <button onClick={this.clickHandler}>Randomize!</button>
+            </div>
             <div>
               {this.state.randomRecipes.map(el => {
                 return (
                   <div className='card'>
                     <br></br>
                     <h3 className='recipeName'>{el.name}</h3>
+                    <img className='image' src={el.image}/>
+                    <br></br>
                     <p>{el.ingredients.map(ing => {
                       return (
                         <li>{ing}</li>
                       )
-                    })}</p>
+                    })}</p>  
                     <p>{el.instructions}</p>
                   </div>
                 )

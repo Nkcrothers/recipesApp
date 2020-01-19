@@ -19,3 +19,15 @@
 .recipeName {
     text-align: center;
 }
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+.image {
+    width: 400px;
+    height: 300px;
+    overflow:hidden;
+    margin: auto;
+}
