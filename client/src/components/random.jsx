@@ -56,23 +56,22 @@ class Random extends React.Component {
               <button onClick={this.clickHandler}>Randomize!</button>
             </div>
             <div>
-              {this.state.randomRecipes.map(el => {
+              {this.state.randomRecipes.map((el, i) => {
                 return (
-                  <div className='card'>
+                  <div className='card' key={i}>
                     <br></br>
                     <h3 className='recipeName'>{el.name}</h3>
                     <img className='image' src={el.image}/>
                     <br></br>
-                    <p>{el.ingredients.map(ing => {
+                    <p>{el.ingredients.map((ing, j) => {
                       return (
-                        <li>{ing}</li>
+                        <li key={j}>{ing}</li>
                       )
                     })}</p>  
                     <p>{el.instructions}</p>
                   </div>
                 )
               })}
-              {console.log(this.state.randomRecipes)}
             </div>
           </div>
         )
